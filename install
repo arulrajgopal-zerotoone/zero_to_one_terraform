@@ -1,0 +1,10 @@
+sudo apt update
+sudo apt install terraform
+
+
+sudo snap install terraform
+
+terraform --version
+
+
+
