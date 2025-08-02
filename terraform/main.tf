@@ -14,19 +14,19 @@ resource "azurerm_resource_group" "resource_group" {
   location = "South India"
 }
 
-# resource "azurerm_storage_account" "storage_account" {
-#   name                     = "test_storage_account"
-#   resource_group_name       = azurerm_resource_group.resource_group.name
-#   location                 = azurerm_resource_group.resource_group.location
-#   account_tier              = "Standard"
-#   account_replication_type = "LRS"
-#   is_hns_enabled           = true
+resource "azurerm_storage_account" "storage_account" {
+  name                     = "test_storage_account"
+  resource_group_name       = azurerm_resource_group.resource_group.name
+  location                 = azurerm_resource_group.resource_group.location
+  account_tier              = "Standard"
+  account_replication_type = "LRS"
+  is_hns_enabled           = true
 
-#   tags = {
-#     environment = "Terraform"
-#   }
+  tags = {
+    environment = "Terraform"
+  }
   
-# }
+}
 
 resource "azurerm_data_factory" "adf" {
   name                = "azuredatafactory6789"
@@ -38,16 +38,16 @@ resource "azurerm_data_factory" "adf" {
   }
 }
 
-# resource "azurerm_databricks_workspace" "dbx" {
-#   name                = "arulrajgopal-dbx"
-#   resource_group_name = azurerm_resource_group.resource_group.name
-#   location            = azurerm_resource_group.resource_group.location
-#   sku                 = "premium"  
+resource "azurerm_databricks_workspace" "dbx" {
+  name                = "arulrajgopal-dbx"
+  resource_group_name = azurerm_resource_group.resource_group.name
+  location            = azurerm_resource_group.resource_group.location
+  sku                 = "premium"  
 
-#   tags = {
-#     environment = "Terraform"
-#   }
-# }
+  tags = {
+    environment = "Terraform"
+  }
+}
 
 # # azuread provider setup
 # provider "azuread" {
