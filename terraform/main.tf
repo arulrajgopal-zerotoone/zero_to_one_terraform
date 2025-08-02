@@ -14,8 +14,8 @@ resource "azurerm_resource_group" "resource_group" {
   location = "South India"
 }
 
-resource "azurerm_storage_account" "source" {
-  name                     = "sourceadls6789"
+resource "azurerm_storage_account" "storage_account" {
+  name                     = "test_storage_account"
   resource_group_name       = azurerm_resource_group.resource_group.name
   location                 = azurerm_resource_group.resource_group.location
   account_tier              = "Standard"
@@ -25,35 +25,7 @@ resource "azurerm_storage_account" "source" {
   tags = {
     environment = "Terraform"
   }
-
   
-}
-
-resource "azurerm_storage_account" "target1" {
-  name                     = "target1adls6789"
-  resource_group_name       = azurerm_resource_group.resource_group.name
-  location                 = azurerm_resource_group.resource_group.location
-  account_tier              = "Standard"
-  account_replication_type = "LRS"
-  is_hns_enabled           = true
-
-  tags = {
-    environment = "Terraform"
-  }
-}
-
-resource "azurerm_storage_account" "target2" {
-  name                     = "target2adls6789"
-  resource_group_name       = azurerm_resource_group.resource_group.name
-  location                 = azurerm_resource_group.resource_group.location
-  account_tier              = "Standard"
-  account_replication_type = "LRS"
-  is_hns_enabled           = true
-
-
-  tags = {
-    environment = "Terraform"
-  }
 }
 
 resource "azurerm_data_factory" "adf" {
@@ -68,8 +40,8 @@ resource "azurerm_data_factory" "adf" {
 
 resource "azurerm_databricks_workspace" "dbx" {
   name                = "arulrajgopal-dbx"
-  resource_group_name = azurerm_resource_group.dbx.name
-  location            = azurerm_resource_group.dbx.location
+  resource_group_name = azurerm_resource_group.resource_group.name
+  location            = azurerm_resource_group.resource_group.location
   sku                 = "premium"  
 
   tags = {
