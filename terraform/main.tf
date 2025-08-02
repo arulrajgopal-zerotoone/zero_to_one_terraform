@@ -3,11 +3,10 @@ provider "azurerm" {
   features {}
 
   tenant_id       = var.tenant_id
-  subscription_id = var.subscription_id
+  subscription_id = var.subscriber_id
   client_id       = var.client_id
   client_secret   = var.client_secret
 }
-
 
 resource "azurerm_resource_group" "resource_group" {
   name     = "test_resource_group"
@@ -29,7 +28,7 @@ resource "azurerm_storage_account" "storage_account" {
 }
 
 resource "azurerm_data_factory" "adf" {
-  name                = "azuredatafactory"
+  name                = "arultestadf"
   location            = azurerm_resource_group.resource_group.location
   resource_group_name = azurerm_resource_group.resource_group.name
 

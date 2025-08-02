@@ -3,7 +3,7 @@ variable "tenant_id" {
   default = "XXXX"
 }
 
-variable "subscription_id" {
+variable "subscriber_id" {
   type    = string
   default = "XXXX"
 }
