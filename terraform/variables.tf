@@ -1,19 +1,19 @@
 variable "tenant_id" {
   type    = string
-  default = "<your-tenant-id>"
+  default = "XXXX"
 }
 
 variable "subscription_id" {
   type    = string
-  default = "<your-subscription-id>"
+  default = "XXXX"
 }
 
 variable "client_id" {
   type    = string
-  default = "<your-client-id>"
+  default = "XXXX"
 }
 
 variable "client_secret" {
   type    = string
-  default = "<your-client-secret>"
+  default = "XXXX"
 }
