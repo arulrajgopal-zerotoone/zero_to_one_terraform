@@ -14,7 +14,7 @@ resource "azurerm_resource_group" "resource_group" {
 }
 
 resource "azurerm_storage_account" "storage_account" {
-  name                     = "arulteststorageacct"
+  name                     = "kaniniwitharuladls"
   resource_group_name       = azurerm_resource_group.resource_group.name
   location                 = azurerm_resource_group.resource_group.location
   account_tier              = "Standard"
@@ -117,6 +117,7 @@ resource "azurerm_role_assignment" "owner_assignment" {
   role_definition_name = "Owner"
   principal_id         = data.azuread_user.target_user.object_id
 }
+
 
 
 
