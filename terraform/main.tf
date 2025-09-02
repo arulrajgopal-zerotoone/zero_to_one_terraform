@@ -37,16 +37,44 @@ resource "azurerm_data_factory" "adf" {
   }
 }
 
-resource "azurerm_databricks_workspace" "dbx" {
-  name                = "arulrajgopal-dbx"
-  resource_group_name = azurerm_resource_group.resource_group.name
-  location            = azurerm_resource_group.resource_group.location
-  sku                 = "premium"  
+resource "azurerm_resource_group" "rg_dev" {
+  name     = "dbx-dev"
+  location = "South India"
+}
 
-  tags = {
+
+resource "azurerm_databricks_workspace" "dbx1" {
+  name                = "kaniniwitharul-dbx1-dev"
+  resource_group_name = azurerm_resource_group.rg_dev.name
+  location            = azurerm_resource_group.rg_dev.location
+  sku                 = "premium"
+
+    tags = {
     environment = "Terraform"
   }
 }
+
+resource "azurerm_resource_group" "rg_prod" {
+  name     = "dbx-prod"
+  location = "South India"
+}
+
+
+resource "azurerm_databricks_workspace" "dbx2" {
+  name                = "kaniniwitharul-dbx1-prod"
+  resource_group_name = azurerm_resource_group.rg_prod.name
+  location            = azurerm_resource_group.rg_prod.location
+  sku                 = "premium"
+
+    tags = {
+    environment = "Terraform"
+  }
+
+  depends_on = [azurerm_databricks_workspace.dbx1]
+}
+
+
+
 
 # azuread provider setup
 provider "azuread" {
@@ -89,6 +117,7 @@ resource "azurerm_role_assignment" "owner_assignment" {
   role_definition_name = "Owner"
   principal_id         = data.azuread_user.target_user.object_id
 }
+
 
 
 
