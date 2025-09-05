@@ -74,6 +74,44 @@ resource "azurerm_databricks_workspace" "dbx2" {
 }
 
 
+resource "azurerm_resource_group" "postgres_resource_group" {
+  name     = "postgres_resource_group"
+  location = "East US"
+}
+
+resource "azurerm_postgresql_flexible_server" "postgresserver" {
+  name                   = "arulrajgopalserver"
+  resource_group_name    = azurerm_resource_group.postgres_resource_group.name
+  location               = azurerm_resource_group.postgres_resource_group.location
+  version                = "16" # latest supported version
+  administrator_login    = "Arulraj"
+  administrator_password = "test_1234"
+
+  storage_mb = 32768  # 32 GB
+  sku_name   = "B_Standard_B1ms"
+
+  zone = "1"
+
+  maintenance_window {
+    day_of_week  = 0
+    start_hour   = 0
+    start_minute = 0
+  }
+
+  authentication {
+    active_directory_auth_enabled = false
+    password_auth_enabled         = true
+  }
+
+  public_network_access_enabled = true
+  auto_grow_enabled             = false
+
+  tags = {
+    environment = "Terraform"
+  }
+}
+
+
 
 
 # azuread provider setup
@@ -117,6 +155,7 @@ resource "azurerm_role_assignment" "owner_assignment" {
   role_definition_name = "Owner"
   principal_id         = data.azuread_user.target_user.object_id
 }
+
 
 
 
