@@ -37,6 +37,8 @@ resource "azurerm_data_factory" "adf" {
   }
 }
 
+#databricks workspace
+
 resource "azurerm_resource_group" "rg_dev" {
   name     = "dbx-dev"
   location = "South India"
@@ -73,7 +75,7 @@ resource "azurerm_databricks_workspace" "dbx2" {
   depends_on = [azurerm_databricks_workspace.dbx1]
 }
 
-
+#postgresql flexible server
 resource "azurerm_resource_group" "postgres_resource_group" {
   name     = "postgres_resource_group"
   location = "East US"
