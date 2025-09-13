@@ -14,7 +14,7 @@ resource "azurerm_resource_group" "resource_group" {
 }
 
 resource "azurerm_storage_account" "storage_account" {
-  name                     = "kaniniwitharuladls"
+  name                     = "kaniniproadls"
   resource_group_name       = azurerm_resource_group.resource_group.name
   location                 = azurerm_resource_group.resource_group.location
   account_tier              = "Standard"
@@ -46,7 +46,7 @@ resource "azurerm_resource_group" "rg_dev" {
 
 
 resource "azurerm_databricks_workspace" "dbx1" {
-  name                = "kaniniwitharul-dbx1-dev"
+  name                = "kaninipro-dbx1-dev"
   resource_group_name = azurerm_resource_group.rg_dev.name
   location            = azurerm_resource_group.rg_dev.location
   sku                 = "premium"
@@ -63,7 +63,7 @@ resource "azurerm_resource_group" "rg_prod" {
 
 
 resource "azurerm_databricks_workspace" "dbx2" {
-  name                = "kaniniwitharul-dbx1-prod"
+  name                = "kaninipro-dbx1-prod"
   resource_group_name = azurerm_resource_group.rg_prod.name
   location            = azurerm_resource_group.rg_prod.location
   sku                 = "premium"
